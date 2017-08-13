@@ -1,0 +1,36 @@
+# Created by .ignore support plugin (hsz.mobi)
+# Created by rabin sherestha
+### IntelliJ IDEA ###
+.idea
+.idea/libraries
+.idea/libraries/
+.idea/workspace.xml
+.idea/*
+.idea/
+.idea/modules.xml
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.iws
+*.iml
+*.ipr
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+.nb-gradle/
+AppClient/src/main/resources/static/
+AppClient/src/main/resources/templates/
+AppServer/src/main/resources/static/
+AppServer/src/main/resources/templates/
