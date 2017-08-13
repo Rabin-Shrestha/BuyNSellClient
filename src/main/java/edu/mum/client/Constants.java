@@ -6,4 +6,5 @@ package edu.mum.client;
 public class Constants {
     public static String BASE_URL = "http://localhost:8080/";
     public static String USER_URL = BASE_URL+"user/";
+    public static String POST_URL = BASE_URL+"post/";
 }

@@ -5,7 +5,7 @@ package edu.mum.client.model;
  */
 public class PriceDetail {
     private Double price;
-    private Boolean isNegotiable;
+    private Boolean negotiable;
 
     private String condition;
 
@@ -13,9 +13,9 @@ public class PriceDetail {
 
     public PriceDetail(){}
 
-    public PriceDetail(Double price, Boolean isNegotiable, String condition, String ownershipDoc) {
+    public PriceDetail(Double price, Boolean negotiable, String condition, String ownershipDoc) {
         this.price = price;
-        this.isNegotiable = isNegotiable;
+        this.negotiable = negotiable;
         this.condition = condition;
         this.ownershipDoc = ownershipDoc;
     }
@@ -29,11 +29,11 @@ public class PriceDetail {
     }
 
     public Boolean getNegotiable() {
-        return isNegotiable;
+        return negotiable;
     }
 
     public void setNegotiable(Boolean negotiable) {
-        isNegotiable = negotiable;
+        this.negotiable = negotiable;
     }
 
     public String getCondition() {
