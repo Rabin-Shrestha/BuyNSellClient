@@ -43,4 +43,8 @@ public class PostController {
         return "redirect:/post/list";
     }
 
+    @GetMapping("/detail")
+    public String detailPost(){
+        return "postDetail";
+    }
 }
