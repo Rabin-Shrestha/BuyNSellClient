@@ -17,9 +17,9 @@ public class PostService extends AbstractService<Post>{
         baseUrl = Constants.POST_URL;
     }
 
-    public Post add(Post Post){
+    public Post add(Post post){
         //System.out.println("posting post");
-        return post(Post, null);
+        return post(post, null);
     }
 
     public Post update(Post Post){
