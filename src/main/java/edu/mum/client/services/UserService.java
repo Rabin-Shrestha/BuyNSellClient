@@ -23,13 +23,14 @@ public class UserService extends AbstractService<User>{
         baseUrl = Constants.USER_URL;
     }
 
-    public User add(User User){
-        System.out.println("posting user");
-        return post(User, null);
+    public User add(User user){
+        System.out.println("registering new user");
+        return post(user, null);
     }
 
-    public User update(User User){
-        return post(User, "/"+User.getId());
+    public User update(User user){
+        System.out.println("updating user information for :"+user);
+        return update(user, user.getId());
     }
 
     public User getById(String id){

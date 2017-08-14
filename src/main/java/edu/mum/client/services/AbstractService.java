@@ -29,15 +29,24 @@ public class AbstractService<T> {
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
+        System.out.println("calling url :"+url);
+        T obj = (T) restTemplate.postForObject(url, t, clazz, "");
+        return obj;
+
+    } public T update(T t, String param){
+        String  url = baseUrl+"update/";
+        if (param!=null)
+            url=url+param;
+        System.out.println("calling url :"+url);
         T obj = (T) restTemplate.postForObject(url, t, clazz, "");
         return obj;
     }
 
-   /* public T put(T t, String param){
+ /*  public T put(T t, String param){
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
-        T obj = (T) restTemplate.put(url, t, clazz, "");
+        T obj = (T) restTemplate.put(url, clazz, "");
         return obj;
     }*/
 
@@ -45,6 +54,7 @@ public class AbstractService<T> {
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
+        System.out.println("calling url :"+url);
         T obj = (T) restTemplate.getForObject(url, clazz, "");
         return obj;
     }
@@ -53,7 +63,7 @@ public class AbstractService<T> {
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
-        System.out.println("url:"+url);
+        System.out.println("calling url :"+url);
         ResponseEntity<List<T>> response =
                 restTemplate.exchange(url,
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<T>>() {
@@ -66,6 +76,8 @@ public class AbstractService<T> {
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
+        System.out.println("url:"+url);
+
         restTemplate.delete(url);
     }
 }
