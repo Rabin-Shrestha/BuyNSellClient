@@ -12,24 +12,48 @@
 	<div th:replace="/header :: header" />
 <div class="container"><br/> <br/><br/>
 	<div class="row">
-		<div class= "col-sm-3" >
+		<div class= "col-sm-3" action="#" th:action="@{/wishlist/showCataWishlist}" method="GET" >
 	 		<p>Catagory Wish List </p>
-	 		<div class="list-group">
-	 			<a href="#" class="list-group-item">Wish List 1</a>
-				<a href="#" class="list-group-item">Wish List 2</a>
-	 			<a href="#" class="list-group-item">Wish List 3</a>
-	  			<a id= "btnCreate" href="#" class="btn btn-primary btn-block" >Add New</a>
-	  		</div>
+<!-- 	 		<div class="list-group"> -->
+<!-- 	 			<a href="#" class="list-group-item" th:text= "${iter.name}">Wish List 1</a> -->
+<!-- 				<a href="#" class="list-group-item">Wish List 2</a> -->
+<!-- 	 			<a href="#" class="list-group-item">Wish List 3</a> -->
+<!-- 	  			<a id= "btnCreate" href="#" class="btn btn-primary btn-block" >Add New</a> -->
+<!-- 	  		</div> -->
+	  		
+	  		
+<!-- 	  		<div class="list-group" th:each="catagory,iter : ${catagory}"> -->
+<!-- 	 			<a href="#" class="list-group-item" th:text= "${iter.name}"></a> -->
+<!-- 	 			<a id= "btnCreate" href="#" class="btn btn-primary btn-block" >Add New</a> -->
+<!-- 	 		</div> -->
+	  		
+	  		<div class = "row">
+				<table class="list-group-item">
+	                    <thead>
+	                        <tr>
+	                            <th>List Categories</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr th:each="catagory,iter : ${catagoryList}">
+	                            <td th:text="${catagory.name}"> <a href="#" ></a></td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	                <a id= "btnCreate" href="#" class="btn btn-primary btn-block" >Add New</a>
+			</div>
+	  		
 	  		
 			 <div id="hideCataWL">
 				 <form action="#" th:action="@{/wishlist/catagory}" th:object="${catagory}" method="post">
+				 	<br/>
 			    		<input th:type="text" name="name" />
-				 	<button th:id="submit"> Add </button>
+				 	<button th:id="submit" class="btn btn-primary" > Add </button>
 				 </form>
 			 </div>
 	 
 	 	</div>
-		<div class= "col-sm-9"> 
+		<div class= "col-sm-9" action="#" th:action="@{/wishlist/showWishList}" method="GET" > 
 			<p>Create Wish List </p> 
 			<div class = "row">
 				<table class="table table-bordered table-hover">
@@ -38,26 +62,26 @@
 	                            <th>No</th>
 	                            <th>Image</th>
 	                            <th>Name</th>
-	                            <th>Edit</th>
-	                            <th>Delete</th>
+<!-- 	                            <th>Edit</th> -->
+<!-- 	                            <th>Delete</th> -->
 	                        </tr>
 	                    </thead>
 	                    <tbody>
 	                        <tr th:each="wishlist,iter : ${wishlists}">
 	                            <td th:text="${iter.count}"></td>
-	                            <td th:text="${wishlist.name}"></td>
-	                            <td th:text="${wishlist.iamge}"></td>
-	                            <td><a th:href="@{/wishlist/{id}/edit(id=${wishlist.id})}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-	                            <td><a th:href="@{/wishlist/{id}/delete(id=${wishlist.id})}"><span class="glyphicon glyphicon-trash"></span></a></td>
+	                            <td> <img th:src="${wishlist.image}" alt="picture of wish" /></td>
+	                            <td th:text="${wishlist.desc}"></td>
+<!-- 	                            <td><a th:href="@{/wishlist/{id}/edit(id=${wishlist.id})}"><span class="glyphicon glyphicon-pencil"></span></a></td> -->
+<!-- 	                            <td><a th:href="@{/wishlist/{id}/delete(id=${wishlist.id})}"><span class="glyphicon glyphicon-trash"></span></a></td> -->
 	                        </tr>
 	                    </tbody>
 	                </table>
 			</div>
 			<div>
-				<a id= "newWL" href="#" class="btn btn-primary btn-block" >Create new  wish list</a> <br/>
+				<a id="newWL" href="#" class="btn btn-primary btn-block" >Create new  wish list</a> <br/>
 			</div>
 			<div id="hideWL">
-				<form action="#" th:action="@{/wishlist/newwishlist}" th:object="${wishlist}" method="post">
+				<form action="#" th:action="@{/wishlist/postWishlist}" th:object="${wishlist}" method="POST">
 			    		Image <input th:type="text" name="image" /> <br/>
 			    		Name  <input th:type="text" name="name" />
 				 	<button th:id="btnCreateWL" class="btn btn-primary">create new wish</button>
