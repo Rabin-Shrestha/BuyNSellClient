@@ -3,8 +3,80 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Post Detail</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8  col-centered article-container">
+            <div class="panel panel-primary">
+                <div class="panel-heading" th:text="${post.title}"></div>
+                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image" /></div>
+                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- update post section starts-->
+<section id="posts">
+    <div class="container">
+
+
+        <!--row div starts-->
+
+        <div class="row">
+            <article class="col-md-12  col-centered article-container">
+                <header class="clearfix">
+                    <img class="img-responsive" src="http://lorempixel.com/75/75" alt="profile-picture"/>
+                    <h1 th:text="${poster.firstName}" >
+                        <h2 th:text="${poster.email}"></h2>
+                        <br/>
+                        <small th:text="Posted on ${post.postedOn}"></small>
+                    </h1>
+                    <p th:text="${post.description}"></p>
+                </header>
+
+                <footer>
+                    <div class="btn-group" role="group">
+
+
+                        <button type="button" id="${post.postid}-comment-open-button" name="${post.postid}" class="comment-button btn btn-link"><span
+                                class="glyphicon glyphicon-comment"></span>
+                            Comment
+                        </button>
+                    </div>
+                    <div class="comment-content-div" id="${post.postid}-comment-content-div">
+                        <div id="${post.postid}-comment-list" class="list-group">
+
+                        </div>
+
+                        <form id="${post.postid}-comment-form" class="clearfix list-group-item">
+                            <div class="form-group">
+                                    <textarea name="comment-content" id="${post.postid}-comment-content-textarea"
+                                              class="form-control" rows="5"
+                                              ></textarea>
+                            </div>
+                            <button type="button" class="comment-content-button btn btn-primary pull-right">
+                                Comment<span class="postidComment" style="display: none;">${post.postid}</span>
+                            </button>
+                        </form>
+                    </div>
+                </footer>
+
+            </article>
+        </div>
+
+        <!--row div ends-->
+    </div>
+
+</section>
+<!--post section ends-->
 
 </body>
 </html>
