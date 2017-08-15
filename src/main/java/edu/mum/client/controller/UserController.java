@@ -37,7 +37,7 @@ public class UserController {
 
     @PostMapping("/")
     public String registerUser(Model model, User user) {
-        System.out.println("I user registration controller:");
+        System.out.println("Inside registration controller: RegistrationUser");
         User newUser = uService.add(user);
         System.out.println("The registered user is " + newUser);
         return "profile";
