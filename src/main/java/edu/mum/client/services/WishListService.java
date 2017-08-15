@@ -1,7 +1,5 @@
 package edu.mum.client.services;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,8 +19,18 @@ public class WishListService {
     public Object[] getCatagories() {
         String urlGetList = "http://localhost:8080/catagory/all";
         ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity(urlGetList, Object[].class);
+//        ResponseEntity<List<Catagory>> responseEntity = restTemplate.exchange(urlGetList,
+//                HttpMethod.GET, null, new ParameterizedTypeReference<List<Catagory>>() {
+//                });
         Object[] objects = responseEntity.getBody();
-       System.out.println("panda" + objects);
+        return objects;
+    }
+    
+    public Object[] getWLByCata(String cataId) {
+    		String urlGetList = "http://localhost:8080/catagory/getWLByCatagory/"+cataId;
+        ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity(urlGetList, Object[].class);
+        Object[] objects = responseEntity.getBody();
+        
         return objects;
     }
     
@@ -56,4 +64,13 @@ public class WishListService {
         System.out.println("panda test Service of WishList" + objects);
         return objects;
     }
+    
+    public Object[] postWLByCata(Catagory cata) {
+        String urlPostList = "http://localhost:8080/catagory/addNLoadWishList";
+        ResponseEntity<Object[]> responseEntity = restTemplate.postForEntity(urlPostList, cata, Object[].class);
+        Object[] objects = responseEntity.getBody();
+       
+        return objects;
+    }
+    
 }

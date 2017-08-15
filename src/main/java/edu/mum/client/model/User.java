@@ -1,5 +1,6 @@
 package edu.mum.client.model;
-
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,28 +19,23 @@ public class User {
     private String zipcode;
     private String phoneNo;
     private String photoUrl;
-    private String lastLogIn;
-    private String createdOn;
+    private Date lastLogIn;
+    private Date createdOn;
     private List<UserReview> userReviewList;
     private List<String> userPostIds;
+    private List<Catagory> catagoryWishList;
 
-    public User(){}
 
-    public User(String userName, String password, boolean enabled, String email, String firstName, String lastName, String address, String zipcode, String phoneNo, String photoUrl, String lastLogIn, String createdOn, List<UserReview> userReviewList, List<String> userPostIds) {
-        this.userName = userName;
-        this.password = password;
-        this.enabled = enabled;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.zipcode = zipcode;
-        this.phoneNo = phoneNo;
-        this.photoUrl = photoUrl;
-        this.lastLogIn = lastLogIn;
-        this.createdOn = createdOn;
-        this.userReviewList = userReviewList;
-        this.userPostIds = userPostIds;
+    public List<Catagory> getCatagoryWishList() {
+        return catagoryWishList;
+    }
+
+    public void setCatagoryWishList(List<Catagory> catagoryWishList) {
+        this.catagoryWishList = catagoryWishList;
+    }
+
+    public User(){
+
     }
 
     @Override
@@ -144,20 +140,28 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public String getLastLogIn() {
+    public Date getLastLogIn() {
         return lastLogIn;
     }
 
-    public void setLastLogIn(String lastLogIn) {
+    public void setLastLogIn(Date lastLogIn)
+    {
         this.lastLogIn = lastLogIn;
     }
 
-    public String getCreatedOn() {
+    public Date getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(String createdOn) {
+    public void setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
+
+        /*DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        String date= dateFormat .format(createdOn);
+        Date today = Calendar.getInstance().getTime();
+        System.out.println("date:"+date);
+        System.out.println("date:"+this.createdOn);*/
+
     }
 
     public List<UserReview> getUserReviewList() {
