@@ -29,17 +29,18 @@ public class AbstractService<T> {
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
+        System.out.println("******************" + url);
         T obj = (T) restTemplate.postForObject(url, t, clazz, "");
         return obj;
     }
 
-   /* public T put(T t, String param){
+    public void put(T t, String param){
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
-        T obj = (T) restTemplate.put(url, t, clazz, "");
-        return obj;
-    }*/
+         restTemplate.put(url, t, clazz, "");
+        return ;
+    }
 
     public T get(String param){
         String  url = baseUrl;
@@ -68,4 +69,7 @@ public class AbstractService<T> {
             url=baseUrl+param;
         restTemplate.delete(url);
     }
+
+
+
 }
