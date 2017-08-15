@@ -21,11 +21,20 @@
                 <li th:classappend="${module == 'tasks' ? 'active' : ''}">
                     <a href="#" th:href="@{/task}">Wish list </a>
                 </li>
+                <li th:classappend="${module == 'tasks' ? 'active' : ''}">
+                    <a href="addPost.html" th:href="@{/post/add}">Add post</a>
+                </li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="/signin" th:href="@{/signin}">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile" th:href="@{/user/profile/59936429527700167806a881}">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Profile
                     </a>
                 </li>
                 <li>
@@ -35,7 +44,6 @@
                     <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
                 </li>
 
-                <li><a href="addPost.html" th:href="@{/post/add}">Add post</a></li>
             </ul>
         </div>
     </div>

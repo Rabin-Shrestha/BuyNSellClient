@@ -16,7 +16,7 @@ public class LoginController {
 	}
 @RequestMapping({"/", "/home"})
 	public String home() {
-		return "postList";
+		return "redirect:/post/list";
 	}
 
 }

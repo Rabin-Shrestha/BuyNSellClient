@@ -32,8 +32,7 @@ public class PostService extends AbstractService<Post>{
     }
 
     public List<Post> getAll(){
-    		return null;
-        //return getList(null);
+        return getList(null);
     }
 
     public void delete(Long id){

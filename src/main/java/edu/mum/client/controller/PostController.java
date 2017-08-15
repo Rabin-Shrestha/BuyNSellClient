@@ -55,8 +55,7 @@ public class PostController {
         Post post = postService.getById(id);
         model.addAttribute("post",post);
 
-        User poster=userService.getById("5990d1d6fb3cd1267c8f4b1a"); // need to replace by post.getUserId()
-
+        User poster=userService.getById(post.getUserId()); // need to replace by post.getUserId()
         model.addAttribute("poster",poster);
         return "postDetail";
     }
