@@ -33,7 +33,8 @@ public class AbstractService<T> {
         T obj = (T) restTemplate.postForObject(url, t, clazz, "");
         return obj;
 
-    } public T update(T t, String param){
+    }
+    public T update(T t, String param){
         String  url = baseUrl+"update/";
         if (param!=null)
             url=url+param;
@@ -42,13 +43,14 @@ public class AbstractService<T> {
         return obj;
     }
 
- /*  public T put(T t, String param){
+    public void put(T t, String param){
         String  url = baseUrl;
         if (param!=null)
             url=baseUrl+param;
-        T obj = (T) restTemplate.put(url, clazz, "");
-        return obj;
-    }*/
+         restTemplate.put(url, t, clazz, "");
+        return ;
+    }
+
 
     public T get(String param){
         String  url = baseUrl;
@@ -80,4 +82,7 @@ public class AbstractService<T> {
 
         restTemplate.delete(url);
     }
+
+
+
 }

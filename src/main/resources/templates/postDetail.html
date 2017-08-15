@@ -4,9 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Post Detail</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/comments.css"/>
 </head>
 <body>
 
@@ -15,8 +16,13 @@
         <div class="col-md-8  col-centered article-container">
             <div class="panel panel-primary">
                 <div class="panel-heading" th:text="${post.title}"></div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image" /></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+                <div class="panel-body"><img src="http://lorempixel.com/640/480/technics/" class="img-responsive"
+                                             style="width:100%" alt="Image"/></div>
+                <div class="panel-footer" th:text="${post.priceDetail.price}">
+
+                </div>
+
+                <p th:text="${post.description}"></p>
             </div>
         </div>
     </div>
@@ -31,41 +37,109 @@
         <!--row div starts-->
 
         <div class="row">
-            <article class="col-md-12  col-centered article-container">
-                <header class="clearfix">
-                    <img class="img-responsive" src="http://lorempixel.com/75/75" alt="profile-picture"/>
-                    <h1 th:text="${poster.firstName}" >
-                        <h2 th:text="${poster.email}"></h2>
-                        <br/>
-                        <small th:text="Posted on ${post.postedOn}"></small>
-                    </h1>
-                    <p th:text="${post.description}"></p>
-                </header>
+            <article class="col-md-8  col-centered article-container">
+
+                <div class="container-fluid">
+                    <ul class="list-inline">
+                        <li><img class="img-responsive" src="http://lorempixel.com/75/75" alt="profile-picture"/></li>
+                        <li><h1 th:text="${poster.firstName + ' ' + poster.lastName}"></h1></li>
+                        <li><p th:text="${poster.email}"></p></li>
+                        <li><span>Posted on :</span>
+                            <small th:text="${post.postedOn}"/>
+                        </li>
+                    </ul>
+                </div>
+
 
                 <footer>
-                    <div class="btn-group" role="group">
+
+                    <!-- list of Comments start -->
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="page-header">
+                                    <h1>
+                                        <small class="pull-right">45 comments</small>
+                                        Comments
+                                    </h1>
+                                </div>
+                                <div class="comments-list">
+                                    <div th:each="comment : ${post.listOfComments}">
+
+                                        <form method="post" action="/post/deleteComment/${post.id}"
+                                              th:action="@{'/post/deleteComment/' + ${post.id}}">
+
+                                            <input type="hidden" name="postId" th:value="${post.id}"/>
+                                            <input type="hidden" name="content" th:value="${comment.content}"/>
+                                            <input type="hidden" name="id" th:value="${comment.id}"/>
+                                            <input type="hidden" name="commentedOn" th:value="${comment.commentedOn}"/>
+                                            <input type="hidden" name="userId" th:value="${comment.userId}"/>
+
+                                            <div class="media">
+                                                <p class="pull-right">
+                                                    <small th:text="${comment.commentedOn}"></small>
+                                                </p>
+                                                <a class="media-left" href="#">
+                                                    <img src="http://lorempixel.com/40/40/people/1/"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h4 class="media-heading user_name">Baltej Singh</h4>
+
+                                                    <p th:text="${comment.content}"></p>
+
+                                                    <p>
+                                                        <small><a href="">Like</a> - <a href="">Share</a></small>
+                                                    </p>
+                                                    <button type="submit" name="deleteComment" value="">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
 
 
-                        <button type="button" id="${post.postid}-comment-open-button" name="${post.postid}" class="comment-button btn btn-link"><span
-                                class="glyphicon glyphicon-comment"></span>
-                            Comment
-                        </button>
-                    </div>
-                    <div class="comment-content-div" id="${post.postid}-comment-content-div">
-                        <div id="${post.postid}-comment-list" class="list-group">
-
+                                </div>
+                            </div>
                         </div>
 
-                        <form id="${post.postid}-comment-form" class="clearfix list-group-item">
-                            <div class="form-group">
-                                    <textarea name="comment-content" id="${post.postid}-comment-content-textarea"
+                        <!-- comment list end -->
+
+
+                        <div class="comment-content-div" id="${post.postid}-comment-content-div">
+                            <!--<div th:each="comment : ${post.listOfComments}" id="${post.postid}-comment-list"-->
+                                 <!--class="list-group">-->
+                                <!--<form action="/post/deleteComment/${post.id}"-->
+                                      <!--th:action="@{'/post/deleteComment/' + ${post.id}}">-->
+
+                                    <!--<div th:text="${comment.content}">-->
+                                    <!--</div>-->
+                                    <!--<button type="submit" name="deleteComment"><span-->
+                                            <!--class="glyphicon glyphicon-trash"></span></button>-->
+                                <!--</form>-->
+
+                            <!--</div>-->
+
+                            <form method="post" action="/post/addComment/${post.id}"
+                                  th:action="@{'/post/addComment/' + ${post.id}}"
+                                  id="${post.postid}-comment-form" class="clearfix list-group-item">
+                                <div class="form-group">
+                                    <textarea name="content" id="${post.postid}-comment-content-textarea"
                                               class="form-control" rows="5"
-                                              ></textarea>
-                            </div>
-                            <button type="button" class="comment-content-button btn btn-primary pull-right">
-                                Comment<span class="postidComment" style="display: none;">${post.postid}</span>
-                            </button>
-                        </form>
+                                    ></textarea>
+                                </div>
+                                <input type="hidden" name="postId" th:value="${post.id}"/>
+                                <input type="hidden" name="userId" th:value="5990d1d6fb3cd1267c8f4b1a"/>
+                                <!-- need to change here -->
+
+                                <button type="submit" class="comment-content-button btn btn-primary pull-right">
+                                    Comment<span class="postidComment" style="display: none;"></span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </footer>
 

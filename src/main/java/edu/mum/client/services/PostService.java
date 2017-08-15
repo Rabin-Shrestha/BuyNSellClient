@@ -1,6 +1,7 @@
 package edu.mum.client.services;
 
 import edu.mum.client.Constants;
+import edu.mum.client.model.Comment;
 import edu.mum.client.model.Post;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ public class PostService extends AbstractService<Post>{
         return post(Post, null);
     }
 
-    public Post update(Post Post){
-        return post(Post, "/"+Post.getId());
+    public void update(Post Post){
+         put(Post, "/"+Post.getId());
     }
 
     public Post getById(String id){
@@ -38,6 +39,26 @@ public class PostService extends AbstractService<Post>{
     public void delete(Long id){
 
         delete("/"+id);
+    }
+
+    public Post deleteComment(Comment comment, String postId){
+
+        Post post = getById(postId);
+
+        Comment delcomment=comment;
+        for (Comment cmt : post.getListOfComments() ) {
+
+            if(cmt.getId().equals(comment.getId())){
+                delcomment=cmt;
+                break;
+            }
+        }
+
+        post.getListOfComments().remove(delcomment);
+
+        update(post);
+
+        return post;
     }
 
 

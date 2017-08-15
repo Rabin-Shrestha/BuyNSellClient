@@ -3,9 +3,11 @@ package edu.mum.client.model;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * Created by prasannabajracharya on 8/11/17.
  */
+
 public class Post {
     private String id;
     private String title;
@@ -17,6 +19,7 @@ public class Post {
     private PriceDetail priceDetail;
     private String itemSpecification;
     private Integer numOfViews;
+
     private List<Comment> listOfComments;
 
     public Post(){}
