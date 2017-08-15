@@ -1,18 +1,19 @@
 package edu.mum.client.controller;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import edu.mum.client.model.Catagory;
 import edu.mum.client.model.WishList;
-import edu.mum.client.services.UserService;
 import edu.mum.client.services.WishListService;
+
 
 @Controller
 @RequestMapping("/wishlist")
@@ -21,36 +22,85 @@ public class WishListController {
 	 @Autowired
 	 	private WishListService wlService;
 	 
-	@RequestMapping("/showCataWishlist")
-	public String showCataWishList(Model model) {
+	 
+	@RequestMapping(value ="/showCataWishlist",method = RequestMethod.GET)
+	public String showCataWishList(@RequestParam(value= "cataId", required = false) String cataId, Model model) {
 		Object[] a = wlService.getCatagories();
-		System.out.println("new test panda"+Arrays.toString(a));
-		model.addAttribute("catagoryList",a);
+		Object[] b;
+		if(cataId==null) {
+		 b = wlService.getWishList();
+		}
+		else{
+			b = wlService.getWLByCata(cataId);
+		}
+		List<Object> awl = Arrays.asList(a);
+		List<Object> bwl = Arrays.asList(b);
+		Collections.reverse(awl);
+		Collections.reverse(bwl);
+		model.addAttribute("catagoryList",awl);
+		model.addAttribute("wishlists",bwl);
+		
+		
 		return "wishlist";
 	}
-	
-	@PostMapping("/catagoryList")
-	public String catagoryWish(@ModelAttribute(value="catagory") Catagory catagory, Model model) {
+//	 @GetMapping("/showCataWishlist/{cataId}")
+//		public String showCataWishList(@PathVariable(value= "cataId") String cataId, Model model) {
+//			Object[] a = wlService.getCatagories();
+//			Object[] b;
+//			if(cataId==null) {
+//			 b = wlService.getWishList();
+//			}
+//			else{
+//				b = wlService.getWLByCata(cataId);
+//			}
+//			List<Object> awl = Arrays.asList(a);
+//			List<Object> bwl = Arrays.asList(b);
+//			Collections.reverse(awl);
+//			Collections.reverse(bwl);
+//			model.addAttribute("catagoryList",awl);
+//			model.addAttribute("wishlists",bwl);
+//			
+//			
+//			return "wishlist";
+//		}
+	@PostMapping("/showCataWishlist")
+	public String catagoryWish(@ModelAttribute(value="catagory") Catagory catagory, WishList wishlist, Model model) {
 		Object[] a = wlService.postCatagories(catagory);
-		System.out.println(Arrays.toString(a));
-		model.addAttribute("catagoryPostWL",a);
+		List<Object> al = Arrays.asList(a);
+		Collections.reverse(al);
+		model.addAttribute("catagoryList",al);
+		
+		Object[] b = wlService.postWishlists(wishlist);
+		List<Object> bl = Arrays.asList(b);
+		Collections.reverse(bl);
+		model.addAttribute("wishlists",bl);
+		
 		return "wishlist";
 	}
 	
-	@RequestMapping("/showWishList")
+	@RequestMapping("/showWishlist")
 	public String showWishList(Model model) {
 		Object[] a = wlService.getWishList();
-		System.out.println("new test panda WishList"+Arrays.toString(a));
+		
 		model.addAttribute("wishlists", a);
 		return "wishlist";
 	}
 	
-	@PostMapping("/postWishList")
+	@PostMapping("/postWishlist")
 	public String postNShowWishlist(@ModelAttribute(value="wishlist") WishList wishlist, Model model) {
 		Object[] a = wlService.postWishlists(wishlist);
-		System.out.println(Arrays.toString(a));
+		System.out.println("new test panda WishList " + Arrays.toString(a));
 		model.addAttribute("wishlists",a);
 		return "wishlist";
+	}
+	
+	@PostMapping("/postWLByCata")
+	public String postWLByCata(@ModelAttribute(value="catagory") Catagory catagory, Model model) {
+		Object[] a = wlService.postWLByCata(catagory);
+		System.out.println("123 panda:" + Arrays.toString(a));
+		model.addAttribute("wishlists", a);
+		
+		return "";
 	}
 	
 }

@@ -17,9 +17,9 @@ public class PostService extends AbstractService<Post>{
         baseUrl = Constants.POST_URL;
     }
 
-    public Post add(Post post){
+    public Post add(Post Post){
         //System.out.println("posting post");
-        return post(post, null);
+        return post(Post, null);
     }
 
     public Post update(Post Post){
@@ -31,8 +31,8 @@ public class PostService extends AbstractService<Post>{
     }
 
     public List<Post> getAll(){
-
-        return getList(null);
+    		return null;
+        //return getList(null);
     }
 
     public void delete(Long id){

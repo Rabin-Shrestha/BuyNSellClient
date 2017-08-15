@@ -5,16 +5,11 @@ import java.util.List;
 /**
  * Created by yentran
  */
-public class Catagory {
-
-    @Override
-	public String toString() {
-		return "Catagory [id=" + id + ", name=" + name + "]";
-	}
+public class Catagory{
 
 	private String id;
     private String name;
-
+    private List<WishList> wishlists;
 
     public Catagory() {}
 
@@ -34,4 +29,19 @@ public class Catagory {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public List<WishList> getWishlists() {
+		return wishlists;
+	}
+
+
+	public void setWishlists(List<WishList> wishlists) {
+		this.wishlists = wishlists;
+	}
+
+
+	@Override
+   	public String toString() {
+   		return "Catagory {id='" + id + '\''+ ", name='" + name + '\'' +'}';
+   	}
 }
