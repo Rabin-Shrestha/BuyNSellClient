@@ -1,13 +1,16 @@
 package edu.mum.client;
 
+import edu.mum.client.config.MvcConfig;
 import edu.mum.client.model.User;
 import edu.mum.client.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 
 import java.util.Calendar;
 
 @SpringBootApplication
+@Import({MvcConfig.class})
 public class BuynsellclientApplication {
 
     public static void main(String[] args) {
@@ -30,5 +33,6 @@ public class BuynsellclientApplication {
         UserService userService=new UserService();
         // update test
         //userService.update(user);
+
     }
 }

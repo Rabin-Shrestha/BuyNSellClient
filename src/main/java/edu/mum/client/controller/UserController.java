@@ -74,16 +74,16 @@ public class UserController {
         model.addAttribute(user);
         return "profile";
     }
-
     @RequestMapping(value = "/profile/{uid}", method = RequestMethod.POST)
     public String updateProfile(User userInfo, MultipartFile imageName ,@PathVariable("uid") String uid)  throws IOException {
-        User loggedinUser= uService.getById(uid); // you need to fetch it from session actually
 
+        User loggedinUser= uService.getById(uid); // you need to fetch it from session actually
         String fileName = "";
         if (imageName != null) {
             byte[] bytes = imageName.getBytes();
             fileName = imageName.getOriginalFilename();
-            String fileLocation = new File("src\\main\\resources\\static\\images").getAbsolutePath() + "\\" + fileName;
+           // String fileLocation = new File("src\\main\\resources\\static\\images").getAbsolutePath() + "\\" + fileName;
+            String fileLocation = new File("src/main/webapp/static/images").getAbsolutePath() + "\\" + fileName;
             // String ss = new File("src/main/resources/static/images").getAbsolutePath() + "\\" + fileName;
             FileOutputStream fos = new FileOutputStream(fileLocation);
             fos.write(bytes);

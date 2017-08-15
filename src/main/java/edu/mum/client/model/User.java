@@ -23,6 +23,16 @@ public class User {
     private Date createdOn;
     private List<UserReview> userReviewList;
     private List<String> userPostIds;
+    private List<Catagory> catagoryWishList;
+
+
+    public List<Catagory> getCatagoryWishList() {
+        return catagoryWishList;
+    }
+
+    public void setCatagoryWishList(List<Catagory> catagoryWishList) {
+        this.catagoryWishList = catagoryWishList;
+    }
 
     public User(){
 
