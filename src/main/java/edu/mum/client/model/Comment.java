@@ -66,7 +66,8 @@ public class Comment {
     @Override
     public String toString() {
         return "Comment{" +
-                "content='" + content + '\'' +
+                "id='" + id + '\'' +
+                ", content='" + content + '\'' +
                 ", commentedOn=" + commentedOn +
                 ", userId='" + userId + '\'' +
                 ", postId='" + postId + '\'' +
