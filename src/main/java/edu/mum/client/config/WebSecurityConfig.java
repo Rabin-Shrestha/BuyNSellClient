@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                 .antMatchers("/","/assets/**").permitAll()
+                 .antMatchers("/","/assets/**","/css/**","/images/**","/js/**").permitAll()
                  .antMatchers("/post/delete").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -45,11 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
         auth
             .userDetailsService(customUserDetailsService())
             .passwordEncoder(passwordEncoder());
