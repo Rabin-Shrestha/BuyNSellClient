@@ -1,6 +1,8 @@
 package edu.mum.client.controller;
 
+import edu.mum.client.model.Post;
 import edu.mum.client.model.User;
+import edu.mum.client.services.PostService;
 import edu.mum.client.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,11 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.websocket.Session;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -24,6 +24,8 @@ public class UserController {
 
     @Autowired
     private UserService uService;
+    @Autowired
+    private PostService postService;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -71,9 +73,33 @@ public class UserController {
         System.out.println("Loading user");
         */
         User user = uService.getById(id);
+        if(user==null)
+        {
+            System.out.println("user Id not not found");
+            return "error";
+        }
+        List<Post> userPosts=postService.getAllPostByUserId(id);
+
+        System.out.println("<<<<<============User Details=====================>>>>>>");
+        System.out.println(user);
+        System.out.println("<<<<<==============User's Post===================>>>>>>");
+        System.out.println(userPosts);
+
         model.addAttribute(user);
+        model.addAttribute("posts",userPosts);
+
         return "profile";
     }
+
+
+    @RequestMapping(value = "/profile/posts/{id}", method = RequestMethod.GET)
+    public String getUsersPostlist(Model model, @PathVariable("id") String id) {
+       List<Post> userPosts=postService.getAllPostByUserId(id);
+        model.addAttribute("post",userPosts);
+        return "profile";
+    }
+
+
     @RequestMapping(value = "/profile/{uid}", method = RequestMethod.POST)
     public String updateProfile(User userInfo, MultipartFile imageName ,@PathVariable("uid") String uid)  throws IOException {
 

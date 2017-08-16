@@ -9,7 +9,15 @@ public class Catagory{
 
 	private String id;
     private String name;
-    private List<WishList> wishlists;
+    private List<WishList> wishLists;
+
+    public List<WishList> getWishLists() {
+        return wishLists;
+    }
+
+    public void setWishLists(List<WishList> wishLists) {
+        this.wishLists = wishLists;
+    }
 
     public Catagory() {}
 
@@ -30,14 +38,6 @@ public class Catagory{
         this.name = name;
     }
     
-    public List<WishList> getWishlists() {
-		return wishlists;
-	}
-
-
-	public void setWishlists(List<WishList> wishlists) {
-		this.wishlists = wishlists;
-	}
 
 
 	@Override

@@ -1,28 +1,23 @@
 package edu.mum.client.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.mum.client.Constants;
 import edu.mum.client.model.User;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by Rabin Shrestha on 8/12/2017.
  */
 @Service
+@Transactional
 public class UserService extends AbstractService<User>{
 
     public UserService() {
         super();
         baseUrl = Constants.USER_URL;
     }
-
     public User add(User user){
         System.out.println("registering new user");
         return post(user, null);

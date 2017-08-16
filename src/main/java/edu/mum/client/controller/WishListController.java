@@ -1,18 +1,16 @@
 package edu.mum.client.controller;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
+import edu.mum.client.model.Catagory;
+import edu.mum.client.model.WishList;
+import edu.mum.client.services.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import edu.mum.client.model.Catagory;
-import edu.mum.client.model.WishList;
-import edu.mum.client.services.WishListService;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 @Controller

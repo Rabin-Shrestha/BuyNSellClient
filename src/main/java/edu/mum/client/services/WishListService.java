@@ -1,11 +1,10 @@
 package edu.mum.client.services;
 
+import edu.mum.client.model.Catagory;
+import edu.mum.client.model.WishList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import edu.mum.client.model.Catagory;
-import edu.mum.client.model.WishList;
 
 @Service
 public class WishListService {
