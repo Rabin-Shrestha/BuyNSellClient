@@ -22,7 +22,7 @@ public class EmailAspect
         Object[] args = joinPoint.getArgs();
         String postId = (String)args[0];
         System.out.println("Sending email...");
-        mailUtil.sendEmail("sumankarki465@gmail.com","prasanna.bajracharya@gmail.com",
+        mailUtil.sendEmail("rabinshrestha677@gmail.com","prasanna.bajracharya@gmail.com",
                 "Interested to buy product","I am interested to buy this product" + postId);
         System.out.println("End of EmailAspect.sendEmail()");
     }
