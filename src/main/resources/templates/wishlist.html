@@ -23,10 +23,8 @@
 	                    </thead>
 	                    <tbody>
 	                        <tr th:each="catagory,iter : ${catagoryList}">
-	                            <td ><a th:href="@{'/wishlist/showCataWishlist/CataId/' + ${catagory.id} }" th:text="${catagory.name}"> </a></td>
+	                            <td ><a th:href="@{'/wishlist/showCataWishlist?cataId=' + ${catagory.id}}" th:text="${catagory.name}"> </a></td>
 <!-- 	                       		<td><a th:href="@{/wishlist/showCataWishlist(cataId='90')}" th:text="${catagory.name}" ></a></td> -->
-<!-- 							<td ><a th:href="@{'/wishlist/showCataWishlist?CataId=' + ${catagory.id} }" th:text="${catagory.name}"> </a></td> -->
-
 	                        </tr>
 	                    </tbody>
 	                </table>
@@ -52,7 +50,7 @@
 	                            <th>Image</th>
 	                            <th>Name</th>
 <!-- 	                            <th>Edit</th> -->
-<!-- 	                            <th>Delete</th> -->
+	                            <th>Delete</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -61,7 +59,7 @@
 	                            <td> <img th:src="${wishlist.image}" alt="picture of wish" style="width:304px;height:228px"/></td>
 	                            <td th:text="${wishlist.name}"></td>
 <!-- 	                            <td><a th:href="@{/wishlist/{id}/edit(id=${wishlist.id})}"><span class="glyphicon glyphicon-pencil"></span></a></td> -->
-<!-- 	                            <td><a th:href="@{/wishlist/{id}/delete(id=${wishlist.id})}"><span class="glyphicon glyphicon-trash"></span></a></td> -->
+	                            <td><a th:href="@{/wishlist/showCataWishlist(id=${wishlist.id})}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	                        </tr>
 	                    </tbody>
 	                </table>

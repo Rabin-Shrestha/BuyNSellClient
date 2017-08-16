@@ -103,4 +103,9 @@ public class WishListController {
 		return "";
 	}
 	
+	@DeleteMapping("/showCataWishlist")
+	public String deleteWLById(@ModelAttribute(value="wlId") String wlId) {
+		wlService.delete(wlId);
+		return "wishlist";
+	}
 }
