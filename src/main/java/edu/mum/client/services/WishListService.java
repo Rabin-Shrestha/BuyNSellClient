@@ -74,6 +74,7 @@ public class WishListService {
     }
     
     public void delete(String wlId) {
-    		this.restTemplate.getForEntity("http://localhost:8080/wishlist/deleteById/" + wlId, WishList.class).getBody();
+    	   System.out.println("IDDDDD"+wlId);
+    		this.restTemplate.delete("http://localhost:8080/wishlist/deleteById/" + wlId);
     }
 }

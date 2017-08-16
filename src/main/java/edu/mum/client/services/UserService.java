@@ -2,6 +2,7 @@ package edu.mum.client.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.mum.client.Constants;
+import edu.mum.client.model.Catagory;
 import edu.mum.client.model.User;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -17,9 +18,13 @@ import java.util.List;
  */
 @Service
 public class UserService extends AbstractService<User>{
+	
+	private  RestTemplate restTemplate;
 
     public UserService() {
+    
         super();
+        this.restTemplate = new RestTemplate();
         baseUrl = Constants.USER_URL;
     }
 
@@ -33,6 +38,11 @@ public class UserService extends AbstractService<User>{
         return update(user, user.getId());
     }
 
+    public User getUserByName(String username) {
+    		return this.restTemplate.getForEntity("http://localhost:8080/user/getByName/" + username, User.class).getBody();
+    		 
+    }
+    
     public User getById(String id){
         return get("/"+id);
     }

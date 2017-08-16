@@ -56,10 +56,11 @@
                     <tbody>
                     <tr th:each="wishlist,iter : ${wishlists}">
                         <td th:text="${iter.count}"></td>
-                        <td> <img th:src="${wishlist.image}" alt="picture of wish" style="width:304px;height:228px"/></td>
+                        <td> <img th:src="${wishlist.image}" alt="picture of wish" style="width:354px;height:228px"/></td>
                         <td th:text="${wishlist.name}"></td>
                         <!-- 	                            <td><a th:href="@{/wishlist/{id}/edit(id=${wishlist.id})}"><span class="glyphicon glyphicon-pencil"></span></a></td> -->
-                        <td><a th:href="@{/wishlist/showCataWishlist(id=${wishlist.id})}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td><a th:href="@{'/wishlist/showCataWishlist?wishId=' + ${wishlist.id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    
                     </tr>
                     </tbody>
                 </table>

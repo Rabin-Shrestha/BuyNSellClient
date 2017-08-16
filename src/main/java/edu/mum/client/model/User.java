@@ -3,6 +3,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * Created by Rabin Shrestha on 8/10/2017.
  */
@@ -24,6 +25,16 @@ public class User {
     private List<UserReview> userReviewList;
     private List<String> userPostIds;
     private List<Catagory> catagoryWishList;
+    private List<Role> roleList;
+    
+    
+    public List<Role> getRoles() {
+		return roleList;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roleList = roles;
+	}
 
 
     public List<Catagory> getCatagoryWishList() {
