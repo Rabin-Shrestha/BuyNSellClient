@@ -5,3 +5,8 @@
 .comments-list .media{
     border-bottom: 1px dotted #ccc;
 }
+
+.add-top-margin{
+    margin-top:80px;
+    clear:left
+}

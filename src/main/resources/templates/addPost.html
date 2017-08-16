@@ -9,35 +9,37 @@
 </head>
 <body>
 
+<div th:replace="/header :: header"></div>
 
-<h1> Add Post </h1>
+<h1 style="margin-top:80px;clear:left"> Add Post </h1>
 
 <form method="post" action="/post/add" th:action="@{/post/add}" enctype="multipart/form-data">
     <div>
-        Title : <input type="text" placeholder="Title" name="title" />
+        Title : <input type="text" placeholder="Title" name="title"/>
+
     </div>
 
     <div>
-        Price : <input type="text" placeholder="Price" name="priceDetail.price" />
+        Price : <input type="text" placeholder="Price" name="priceDetail.price"/>
     </div>
 
     <div>
-        Category : <input type="text" placeholder="Category" name="catagory.name" />
+        Category : <input type="text" placeholder="Category" name="catagory.name"/>
     </div>
 
     <div>
-        Description : <input type="description" placeholder="Description" name="description" />
+        Description : <input type="description" placeholder="Description" name="description"/>
     </div>
 
     <div>
-        Item Specification : <input type="text" placeholder="Item Specification" name="itemSpecification" />
+        Item Specification : <input type="text" placeholder="Item Specification" name="itemSpecification"/>
     </div>
 
     <!--photo upload-->
 
     <!--<div>-->
-        <!--<label>Upload Image</label>-->
-        <!--<input type="file" name="photoURL" class="form-control btn btn-default"/>-->
+    <!--<label>Upload Image</label>-->
+    <!--<input type="file" name="photoURL" class="form-control btn btn-default"/>-->
     <!--</div>-->
 
     <!--photo upload ends here-->
