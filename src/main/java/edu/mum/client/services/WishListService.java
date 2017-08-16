@@ -34,7 +34,7 @@ public class WishListService {
     }
     
     public Catagory addNewCatagoryWL(String name) {
-        return this.restTemplate.getForEntity("http://localhost:8080/catagory/addNLoad" + name, Catagory.class).getBody();
+        return this.restTemplate.getForEntity("http://localhost:8080/catagory/addNLoad/" + name, Catagory.class).getBody();
     }
 
     public Object[] postCatagories(Catagory cata) {
@@ -72,4 +72,8 @@ public class WishListService {
         return objects;
     }
     
+    public void delete(String wlId) {
+    	   System.out.println("IDDDDD"+wlId);
+    		this.restTemplate.delete("http://localhost:8080/wishlist/deleteById/" + wlId);
+    }
 }

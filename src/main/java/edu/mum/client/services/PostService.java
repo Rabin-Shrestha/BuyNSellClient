@@ -92,4 +92,9 @@ public class PostService extends AbstractService<Post> {
 
     }
 
+    public void interestedEmail(String postId){
+        System.out.println("I am from interestedEmail Service.");
+    }
+
+
 }

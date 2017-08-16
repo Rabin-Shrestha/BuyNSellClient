@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,7 +24,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/post")
 public class PostController {
-    // PostService postService;
 
     @Autowired
     private PostService postService;
@@ -46,9 +47,21 @@ public class PostController {
     @PostMapping("/add")
     public String addPost(Model model, Post post) {
 
+       // String view = "redirect:/post/list";
+
+       // model.addAttribute("post", post);
         Post newPost = postService.add(post);
         System.out.println("New post added:"+newPost);
+
+//        if(!result.hasErrors()){
+//            return "redirect:/post/list";
+//        } else {
+//            view = "addPost";
+//        }
+//
+//        return view;
         return "redirect:/post/list";
+
     }
 
     @GetMapping("/detail/{id}")
@@ -86,29 +99,18 @@ public class PostController {
     @PostMapping("/deleteComment/{postId}")
     public String deletePostComment(Model model, Comment comment, @PathVariable("postId") String postId) {
 
-        System.out.println("I am from delete Post comment " + comment + "Post id : " + postId);
-        Post post = postService.getById(postId);
-
-        System.out.println("****** from url : " + comment.getId());
-
-        Comment delcomment=comment;
-        for (Comment cmt : post.getListOfComments() ) {
-            System.out.println("******* from Object : " + cmt.getId());
-
-            if(cmt.getId().equals(comment.getId())){
-                System.out.println("----- Match found----");
-                delcomment=cmt;
-                break;
-            }
-        }
-
-        post.getListOfComments().remove(delcomment);
-
-        System.out.println("Comment deleted:"+post.getListOfComments());
-        postService.update(post);
+        Post post = postService.deleteComment(comment, postId);
 
         model.addAttribute(post);
         return "redirect:/post/detail/"+postId;
+    }
+
+    @GetMapping("/interested/{postId}")
+    public String interestedEmail(@PathVariable("postId") String postId){
+        System.out.println("I am from interestedEmail Controller.");
+        postService.interestedEmail(postId);
+        return "redirect:/post/detail/"+postId;
+
     }
 
 }

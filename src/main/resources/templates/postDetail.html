@@ -11,8 +11,14 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 
 <div class="container">
+=======
+<div th:replace="/header :: header"></div>
+
+<div class="container" style="margin-top:80px;clear:left">
+>>>>>>> a16b0e535897e989dce24e24af99f50da75b4f65
     <div class="row">
         <div class="col-md-8  col-centered article-container">
             <div class="panel panel-primary">
@@ -44,7 +50,11 @@
                     <ul class="list-inline">
                         <li><img class="img-responsive" src="http://lorempixel.com/75/75" alt="profile-picture"/></li>
                         <li><h2 th:text="${poster.firstName + ' ' + poster.lastName}"></h2></li>
-                        <li><label th:text="${poster.email}"></label></li>
+                        <li>
+                            <a th:href="@{'/post/interested/' + ${post.id}}">
+                                <label th:text="${poster.email}"></label>
+                            </a>
+                        </li>
                         <li><label th:text="${poster.phoneNo}"></label></li>
                         <li><span>Posted on :</span>
                             <small th:text="${post.postedOn}"/>
@@ -113,15 +123,15 @@
 
                         <div class="comment-content-div" id="${post.postid}-comment-content-div">
                             <!--<div th:each="comment : ${post.listOfComments}" id="${post.postid}-comment-list"-->
-                                 <!--class="list-group">-->
-                                <!--<form action="/post/deleteComment/${post.id}"-->
-                                      <!--th:action="@{'/post/deleteComment/' + ${post.id}}">-->
+                            <!--class="list-group">-->
+                            <!--<form action="/post/deleteComment/${post.id}"-->
+                            <!--th:action="@{'/post/deleteComment/' + ${post.id}}">-->
 
-                                    <!--<div th:text="${comment.content}">-->
-                                    <!--</div>-->
-                                    <!--<button type="submit" name="deleteComment"><span-->
-                                            <!--class="glyphicon glyphicon-trash"></span></button>-->
-                                <!--</form>-->
+                            <!--<div th:text="${comment.content}">-->
+                            <!--</div>-->
+                            <!--<button type="submit" name="deleteComment"><span-->
+                            <!--class="glyphicon glyphicon-trash"></span></button>-->
+                            <!--</form>-->
 
                             <!--</div>-->
 

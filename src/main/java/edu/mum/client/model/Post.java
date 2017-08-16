@@ -1,5 +1,6 @@
 package edu.mum.client.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class Post {
     private String id;
+    //@NotNull
     private String title;
     private Catagory catagory;
     private Date postedOn;

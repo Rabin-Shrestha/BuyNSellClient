@@ -22,15 +22,27 @@ public class WishListController {
 	 
 	 
 	@RequestMapping(value ="/showCataWishlist",method = RequestMethod.GET)
-	public String showCataWishList(@RequestParam(value= "cataId", required = false) String cataId, Model model) {
+	public String showCataWishList(@RequestParam(value= "wishId", required=false) String wishId, @RequestParam(value= "cataId", required = false) String cataId, Model model) {
+		
 		Object[] a = wlService.getCatagories();
 		Object[] b;
+		
+if(wishId!=null) {
+			
+			wlService.delete(wishId);
+			
+		}
+		
 		if(cataId==null) {
 		 b = wlService.getWishList();
+		 
+		// return "wishlist";
 		}
 		else{
 			b = wlService.getWLByCata(cataId);
+			
 		}
+		
 		List<Object> awl = Arrays.asList(a);
 		List<Object> bwl = Arrays.asList(b);
 		Collections.reverse(awl);
@@ -100,5 +112,6 @@ public class WishListController {
 		
 		return "";
 	}
+	
 	
 }

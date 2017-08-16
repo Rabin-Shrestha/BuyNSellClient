@@ -1,9 +1,11 @@
 package edu.mum.client.services;
 
 import edu.mum.client.Constants;
+import edu.mum.client.model.Catagory;
 import edu.mum.client.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -13,9 +15,13 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService extends AbstractService<User>{
+	
+	private RestTemplate restTemplate;
 
     public UserService() {
+    
         super();
+        this.restTemplate = new RestTemplate();
         baseUrl = Constants.USER_URL;
     }
     public User add(User user){
@@ -28,6 +34,11 @@ public class UserService extends AbstractService<User>{
         return update(user, user.getId());
     }
 
+    public User getUserByName(String username) {
+    		return this.restTemplate.getForEntity("http://localhost:8080/user/getByName/" + username, User.class).getBody();
+    		 
+    }
+    
     public User getById(String id){
         return get("/"+id);
     }
